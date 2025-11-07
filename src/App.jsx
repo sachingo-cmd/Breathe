@@ -300,7 +300,7 @@ const colorClasses = {
 };
 
 function App() {
-  const [screen, setScreen] = useState('home'); // home, category, technique-detail, practice
+  const [screen, setScreen] = useState('home');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedTechnique, setSelectedTechnique] = useState(null);
   
@@ -318,7 +318,6 @@ function HomeScreen({ onSelectCategory }) {
   return (
     <div className="min-h-screen p-6 pb-20">
       <div className="max-w-2xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-12 mt-8">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#7A9B8E]/20 mb-4">
             <Wind className="w-10 h-10 text-[#3D5A4C]" />
@@ -327,7 +326,6 @@ function HomeScreen({ onSelectCategory }) {
           <p className="text-lg text-[#3D5A4C]/70">How can we help you today?</p>
         </div>
 
-        {/* Category Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           {categories.map((category) => {
             const Icon = category.icon;
@@ -352,7 +350,6 @@ function HomeScreen({ onSelectCategory }) {
           })}
         </div>
 
-        {/* Browse All */}
         <button 
           onClick={() => onSelectCategory({ id: 'all', label: 'All Techniques' })}
           className="w-full py-4 text-[#3D5A4C]/70 hover:text-[#3D5A4C] transition-colors text-center font-medium"
@@ -372,7 +369,6 @@ function CategoryScreen({ category, onSelectTechnique, onBack }) {
   return (
     <div className="min-h-screen p-6 pb-20">
       <div className="max-w-2xl mx-auto">
-        {/* Header */}
         <button onClick={onBack} className="flex items-center gap-2 text-[#3D5A4C]/70 hover:text-[#3D5A4C] mb-6">
           <ChevronLeft className="w-5 h-5" />
           <span>Back</span>
@@ -383,7 +379,6 @@ function CategoryScreen({ category, onSelectTechnique, onBack }) {
           <p className="text-[#3D5A4C]/60">{filteredTechniques.length} techniques to help you</p>
         </div>
 
-        {/* Technique Cards */}
         <div className="space-y-4">
           {filteredTechniques.map((technique) => {
             const Icon = technique.icon;
@@ -431,13 +426,11 @@ function TechniqueDetail({ technique, onStartPractice, onBack }) {
   return (
     <div className="min-h-screen p-6 pb-32">
       <div className="max-w-2xl mx-auto">
-        {/* Header */}
         <button onClick={onBack} className="flex items-center gap-2 text-[#3D5A4C]/70 hover:text-[#3D5A4C] mb-6">
           <ChevronLeft className="w-5 h-5" />
           <span>Back</span>
         </button>
 
-        {/* Technique Header */}
         <div className="text-center mb-8">
           <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full ${colors.light} mb-4`}>
             <Icon className={`w-10 h-10 ${colors.text}`} />
@@ -453,7 +446,6 @@ function TechniqueDetail({ technique, onStartPractice, onBack }) {
           </div>
         </div>
 
-        {/* Safety Warning (if applicable) */}
         {technique.safety && (
           <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-4 mb-6">
             <div className="flex gap-3">
@@ -466,9 +458,7 @@ function TechniqueDetail({ technique, onStartPractice, onBack }) {
           </div>
         )}
 
-        {/* Collapsible Sections */}
         <div className="space-y-3 mb-8">
-          {/* Why This Helps */}
           <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
             <button
               onClick={() => toggleSection('why')}
@@ -484,7 +474,6 @@ function TechniqueDetail({ technique, onStartPractice, onBack }) {
             )}
           </div>
 
-          {/* Step by Step */}
           <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
             <button
               onClick={() => toggleSection('steps')}
@@ -507,7 +496,6 @@ function TechniqueDetail({ technique, onStartPractice, onBack }) {
             )}
           </div>
 
-          {/* What to Expect */}
           <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
             <button
               onClick={() => toggleSection('expect')}
@@ -524,7 +512,6 @@ function TechniqueDetail({ technique, onStartPractice, onBack }) {
           </div>
         </div>
 
-        {/* Start Practice Button */}
         <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[#F5F3EC] via-[#F5F3EC] to-transparent">
           <div className="max-w-2xl mx-auto">
             <button
@@ -549,6 +536,7 @@ function PracticeScreen({ technique, onComplete, onExit }) {
   const [showInstructions, setShowInstructions] = useState(true);
   const [showCountdown, setShowCountdown] = useState(false);
   const [countdownValue, setCountdownValue] = useState(5);
+  const [breathingStarted, setBreathingStarted] = useState(false);
   
   const currentPhase = technique.pattern[currentPhaseIndex];
   const progress = ((currentCycle * technique.pattern.length + currentPhaseIndex) / (technique.cycles * technique.pattern.length)) * 100;
@@ -561,6 +549,7 @@ function PracticeScreen({ technique, onComplete, onExit }) {
         if (prev <= 1) {
           clearInterval(timer);
           setShowCountdown(false);
+          setBreathingStarted(true);
           setIsPlaying(true);
           return 5;
         }
@@ -572,11 +561,12 @@ function PracticeScreen({ technique, onComplete, onExit }) {
   }, [showCountdown, isPlaying]);
 
   useEffect(() => {
-    if (showCountdown || !isPlaying) return;
+    if (!breathingStarted) return;
     
-    // Reset timeLeft when starting breathing
+    // Reset timeLeft only once when breathing starts
     setTimeLeft(technique.pattern[0].duration);
-  }, [showCountdown, isPlaying, technique.pattern]);
+    setBreathingStarted(false);
+  }, [breathingStarted, technique.pattern]);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -584,14 +574,11 @@ function PracticeScreen({ technique, onComplete, onExit }) {
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 0.1) {
-          // Move to next phase
           const nextPhaseIndex = (currentPhaseIndex + 1) % technique.pattern.length;
           
           if (nextPhaseIndex === 0) {
-            // Completed a full cycle
             const nextCycle = currentCycle + 1;
             if (nextCycle >= technique.cycles) {
-              // Completed all cycles
               setIsPlaying(false);
               setTimeout(() => onComplete(), 1000);
               return 0;
@@ -681,7 +668,6 @@ function PracticeScreen({ technique, onComplete, onExit }) {
   if (showCountdown) {
     return (
       <div className="min-h-screen bg-[#F5F3EC] flex flex-col">
-        {/* Header */}
         <div className="p-4 flex items-center justify-between">
           <button
             onClick={onExit}
@@ -694,9 +680,7 @@ function PracticeScreen({ technique, onComplete, onExit }) {
           </div>
         </div>
 
-        {/* Main Content */}
         <div className="flex-1 flex flex-col items-center justify-center p-6">
-          {/* Static Circle */}
           <div className="relative w-full max-w-sm aspect-square flex items-center justify-center mb-12">
             <div
               className="absolute rounded-full"
@@ -730,7 +714,6 @@ function PracticeScreen({ technique, onComplete, onExit }) {
             </div>
           </div>
 
-          {/* Countdown Label */}
           <div className="text-center">
             <h2 className="text-2xl font-light text-[#3D5A4C]">Get Ready</h2>
           </div>
@@ -741,7 +724,6 @@ function PracticeScreen({ technique, onComplete, onExit }) {
 
   return (
     <div className="min-h-screen bg-[#F5F3EC] flex flex-col">
-      {/* Header */}
       <div className="p-4 flex items-center justify-between">
         <button
           onClick={onExit}
@@ -754,7 +736,6 @@ function PracticeScreen({ technique, onComplete, onExit }) {
         </div>
       </div>
 
-      {/* Progress Bar */}
       <div className="px-6">
         <div className="h-1 bg-white rounded-full overflow-hidden">
           <div
@@ -764,9 +745,7 @@ function PracticeScreen({ technique, onComplete, onExit }) {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 flex flex-col items-center justify-center p-6 pb-32">
-        {/* Breathing Circle */}
         <div className="relative w-full max-w-sm aspect-square flex items-center justify-center mb-12">
           <div
             className="absolute rounded-full transition-all duration-300 ease-in-out"
@@ -803,7 +782,6 @@ function PracticeScreen({ technique, onComplete, onExit }) {
           </div>
         </div>
 
-        {/* Phase Label */}
         <div className="text-center mb-4">
           <h2 className="text-2xl font-light text-[#3D5A4C] capitalize mb-2">
             {currentPhase.phase === 'passive' ? 'Passive Inhale' : currentPhase.phase}
@@ -814,7 +792,6 @@ function PracticeScreen({ technique, onComplete, onExit }) {
         </div>
       </div>
 
-      {/* Control Button */}
       <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[#F5F3EC] via-[#F5F3EC] to-transparent">
         <div className="max-w-2xl mx-auto">
           <button
