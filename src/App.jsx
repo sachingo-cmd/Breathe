@@ -548,8 +548,9 @@ function PracticeScreen({ technique, onComplete, onExit }) {
         if (prev <= 1) {
           clearInterval(timer);
           setShowCountdown(false);
-          setTimeLeft(technique.pattern[0].duration);
           setCurrentPhaseIndex(0);
+          setCurrentCycle(0);
+          setTimeLeft(technique.pattern[0].duration);
           setIsPlaying(true);
           return 5;
         }
@@ -599,11 +600,7 @@ function PracticeScreen({ technique, onComplete, onExit }) {
 
   const getCircleScale = () => {
     const phaseDuration = currentPhase.duration;
-    let phaseProgress = 1 - (timeLeft / phaseDuration);
-    
-    if (phaseProgress < 0.01) {
-      phaseProgress = 0.01;
-    }
+    const phaseProgress = 1 - (timeLeft / phaseDuration);
     
     if (currentPhase.phase === 'inhale') {
       return 0.5 + (phaseProgress * 0.5);
