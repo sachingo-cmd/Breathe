@@ -612,17 +612,19 @@ function PracticeScreen({ technique, onComplete, onExit }) {
   };
 
   const getCircleScale = () => {
-    const phaseProgress = 1 - (timeLeft / currentPhase.duration);
+    const phaseDuration = currentPhase.duration;
+    const phaseProgress = 1 - (timeLeft / phaseDuration);
+    
     if (currentPhase.phase === 'inhale') {
-      return 0.5 + (phaseProgress * 0.5); // Grow from 50% to 100%
+      return 0.5 + (phaseProgress * 0.5);
     } else if (currentPhase.phase === 'exhale') {
-      return 1 - (phaseProgress * 0.5); // Shrink from 100% to 50%
+      return 1 - (phaseProgress * 0.5);
     } else if (currentPhase.phase === 'hold') {
-      return 1; // Stay at 100%
+      return 1;
     } else if (currentPhase.phase === 'passive') {
-      return 0.6; // Medium size for passive breathing
+      return 0.6;
     } else if (currentPhase.phase === 'observe') {
-      return 0.75 + Math.sin(phaseProgress * Math.PI * 2) * 0.1; // Gentle pulse
+      return 0.75 + Math.sin(phaseProgress * Math.PI * 2) * 0.1;
     }
     return 1;
   };
