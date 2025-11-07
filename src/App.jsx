@@ -536,7 +536,6 @@ function PracticeScreen({ technique, onComplete, onExit }) {
   const [showInstructions, setShowInstructions] = useState(true);
   const [showCountdown, setShowCountdown] = useState(false);
   const [countdownValue, setCountdownValue] = useState(5);
-  const [breathingStarted, setBreathingStarted] = useState(false);
   
   const currentPhase = technique.pattern[currentPhaseIndex];
   const progress = ((currentCycle * technique.pattern.length + currentPhaseIndex) / (technique.cycles * technique.pattern.length)) * 100;
@@ -549,7 +548,8 @@ function PracticeScreen({ technique, onComplete, onExit }) {
         if (prev <= 1) {
           clearInterval(timer);
           setShowCountdown(false);
-          setBreathingStarted(true);
+          setTimeLeft(technique.pattern[0].duration);
+          setCurrentPhaseIndex(0);
           setIsPlaying(true);
           return 5;
         }
@@ -558,15 +558,7 @@ function PracticeScreen({ technique, onComplete, onExit }) {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [showCountdown, isPlaying]);
-
-  useEffect(() => {
-    if (!breathingStarted) return;
-    
-    // Reset timeLeft only once when breathing starts
-    setTimeLeft(technique.pattern[0].duration);
-    setBreathingStarted(false);
-  }, [breathingStarted, technique.pattern]);
+  }, [showCountdown, isPlaying, technique.pattern]);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -607,7 +599,11 @@ function PracticeScreen({ technique, onComplete, onExit }) {
 
   const getCircleScale = () => {
     const phaseDuration = currentPhase.duration;
-    const phaseProgress = 1 - (timeLeft / phaseDuration);
+    let phaseProgress = 1 - (timeLeft / phaseDuration);
+    
+    if (phaseProgress === 0) {
+      phaseProgress = 0.01;
+    }
     
     if (currentPhase.phase === 'inhale') {
       return 0.5 + (phaseProgress * 0.5);
