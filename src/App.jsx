@@ -572,6 +572,13 @@ function PracticeScreen({ technique, onComplete, onExit }) {
   }, [showCountdown, isPlaying]);
 
   useEffect(() => {
+    if (showCountdown || !isPlaying) return;
+    
+    // Reset timeLeft when starting breathing
+    setTimeLeft(technique.pattern[0].duration);
+  }, [showCountdown, isPlaying, technique.pattern]);
+
+  useEffect(() => {
     if (!isPlaying) return;
 
     const timer = setInterval(() => {
