@@ -547,9 +547,29 @@ function PracticeScreen({ technique, onComplete, onExit }) {
   const [currentPhaseIndex, setCurrentPhaseIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(technique.pattern[0].duration);
   const [showInstructions, setShowInstructions] = useState(true);
+  const [showCountdown, setShowCountdown] = useState(false);
+  const [countdownValue, setCountdownValue] = useState(5);
   
   const currentPhase = technique.pattern[currentPhaseIndex];
   const progress = ((currentCycle * technique.pattern.length + currentPhaseIndex) / (technique.cycles * technique.pattern.length)) * 100;
+
+  useEffect(() => {
+    if (!showCountdown || isPlaying) return;
+
+    const timer = setInterval(() => {
+      setCountdownValue((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          setShowCountdown(false);
+          setIsPlaying(true);
+          return 5;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [showCountdown, isPlaying]);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -585,6 +605,8 @@ function PracticeScreen({ technique, onComplete, onExit }) {
   const handleStartPause = () => {
     if (showInstructions) {
       setShowInstructions(false);
+      setShowCountdown(true);
+      return;
     }
     setIsPlaying(!isPlaying);
   };
@@ -642,6 +664,67 @@ function PracticeScreen({ technique, onComplete, onExit }) {
           >
             Maybe Later
           </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (showCountdown) {
+    return (
+      <div className="min-h-screen bg-[#F5F3EC] flex flex-col">
+        {/* Header */}
+        <div className="p-4 flex items-center justify-between">
+          <button
+            onClick={onExit}
+            className="p-2 rounded-full hover:bg-white/50 transition-colors"
+          >
+            <X className="w-6 h-6 text-[#3D5A4C]" />
+          </button>
+          <div className="text-sm text-[#3D5A4C]/60">
+            Get Ready
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col items-center justify-center p-6">
+          {/* Static Circle */}
+          <div className="relative w-full max-w-sm aspect-square flex items-center justify-center mb-12">
+            <div
+              className="absolute rounded-full"
+              style={{
+                width: '100%',
+                height: '100%',
+                backgroundColor: '#7A9B8E',
+                opacity: 0.3,
+              }}
+            />
+            <div
+              className="absolute rounded-full"
+              style={{
+                width: '90%',
+                height: '90%',
+                backgroundColor: '#7A9B8E',
+                opacity: 0.5,
+              }}
+            />
+            <div
+              className="absolute rounded-full flex items-center justify-center"
+              style={{
+                width: '80%',
+                height: '80%',
+                backgroundColor: '#7A9B8E',
+              }}
+            >
+              <span className="text-white text-6xl font-light">
+                {countdownValue}
+              </span>
+            </div>
+          </div>
+
+          {/* Countdown Label */}
+          <div className="text-center">
+            <h2 className="text-2xl font-light text-[#3D5A4C]">Get Ready</h2>
+          </div>
         </div>
       </div>
     );
