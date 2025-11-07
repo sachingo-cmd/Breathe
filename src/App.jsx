@@ -601,7 +601,7 @@ function PracticeScreen({ technique, onComplete, onExit }) {
     const phaseDuration = currentPhase.duration;
     let phaseProgress = 1 - (timeLeft / phaseDuration);
     
-    if (phaseProgress === 0) {
+    if (phaseProgress < 0.01) {
       phaseProgress = 0.01;
     }
     
