@@ -29,7 +29,7 @@ const techniques = [
       'Hold empty for 4 seconds',
       'Repeat for 5-10 minutes'
     ],
-    expect: 'You'll feel calmer within 2-3 cycles. Your mind will quiet down. Breathing becomes smooth and natural.',
+    expect: "You'll feel calmer within 2-3 cycles. Your mind will quiet down. Breathing becomes smooth and natural.",
     safety: null
   },
   {
@@ -38,7 +38,7 @@ const techniques = [
     category: ['sleep', 'anxious'],
     duration: 3,
     tier: 'beginner',
-    summary: 'The natural sleep switch. Extended exhale that tells your body it's safe to rest deeply.',
+    summary: "The natural sleep switch. Extended exhale that tells your body it's safe to rest deeply.",
     icon: Moon,
     color: 'terracotta',
     pattern: [
@@ -47,7 +47,7 @@ const techniques = [
       { phase: 'exhale', duration: 8, instruction: 'Breathe out through your mouth' }
     ],
     cycles: 4,
-    why: 'The long exhale activates your body's rest mode. Increases calming chemicals. Makes you drowsy naturally.',
+    why: "The long exhale activates your body's rest mode. Increases calming chemicals. Makes you drowsy naturally.",
     steps: [
       'Place tongue tip behind upper front teeth',
       'Exhale completely with a whoosh sound',
@@ -56,7 +56,7 @@ const techniques = [
       'Exhale through mouth for 8 seconds with whoosh',
       'Repeat 4 times'
     ],
-    expect: 'You might yawn. Body feels heavy. Mind slows down. Sleep comes naturally.',
+    expect: "You might yawn. Body feels heavy. Mind slows down. Sleep comes naturally.",
     safety: null
   },
   {
@@ -65,7 +65,7 @@ const techniques = [
     category: ['emotional', 'anxious'],
     duration: 2,
     tier: 'beginner',
-    summary: 'Your body's natural reset button. Two quick inhales, one long exhale. Works in seconds.',
+    summary: "Your body's natural reset button. Two quick inhales, one long exhale. Works in seconds.",
     icon: Wind,
     color: 'sage',
     pattern: [
@@ -74,7 +74,7 @@ const techniques = [
       { phase: 'exhale', duration: 8, instruction: 'Long exhale through mouth' }
     ],
     cycles: 3,
-    why: 'Re-inflates your lungs fully. Releases stress instantly. This is what your body does naturally when crying.',
+    why: "Re-inflates your lungs fully. Releases stress instantly. This is what your body does naturally when crying.",
     steps: [
       'Breathe in through nose for 2 seconds',
       'Immediately take tiny second breath (no pause)',
@@ -82,7 +82,7 @@ const techniques = [
       'Pause naturally',
       'Repeat 2-3 times'
     ],
-    expect: 'Relief comes fast. Often within one breath. Chest feels lighter. Calm washes over you.',
+    expect: "Relief comes fast. Often within one breath. Chest feels lighter. Calm washes over you.",
     safety: null
   },
   {
@@ -99,7 +99,7 @@ const techniques = [
       { phase: 'exhale', duration: 5, instruction: 'Breathe out through your nose' }
     ],
     cycles: 12,
-    why: 'Your heart and breath sync perfectly. Improves focus without tension. Used by top performers.',
+    why: "Your heart and breath sync perfectly. Improves focus without tension. Used by top performers.",
     steps: [
       'Sit comfortably, close eyes if you like',
       'Breathe in through nose for 5 seconds',
@@ -107,7 +107,7 @@ const techniques = [
       'No pauses - smooth and continuous',
       'Continue for 10-20 minutes'
     ],
-    expect: 'Mind becomes steady. Not too alert, not too relaxed. Perfect for work or meditation.',
+    expect: "Mind becomes steady. Not too alert, not too relaxed. Perfect for work or meditation.",
     safety: null
   },
   {
@@ -116,7 +116,7 @@ const techniques = [
     category: ['stressed', 'anxious'],
     duration: 10,
     tier: 'beginner',
-    summary: 'Twice as long out as in. The ultimate stress melter. Your exhale is your best friend.',
+    summary: "Twice as long out as in. The ultimate stress melter. Your exhale is your best friend.",
     icon: Leaf,
     color: 'sage',
     pattern: [
@@ -124,7 +124,7 @@ const techniques = [
       { phase: 'exhale', duration: 8, instruction: 'Breathe out slowly' }
     ],
     cycles: 10,
-    why: 'Long exhales turn on your calm switch. Slows racing heart. Quiets worried thoughts.',
+    why: "Long exhales turn on your calm switch. Slows racing heart. Quiets worried thoughts.",
     steps: [
       'Find comfortable inhale length (4-6 seconds)',
       'Exhale for double that (8-12 seconds)',
@@ -132,7 +132,7 @@ const techniques = [
       'Smooth and gentle',
       'Practice 5-10 minutes'
     ],
-    expect: 'Shoulders drop. Jaw relaxes. Breathing becomes effortless. Peace settles in.',
+    expect: "Shoulders drop. Jaw relaxes. Breathing becomes effortless. Peace settles in.",
     safety: null
   },
   {
@@ -158,7 +158,7 @@ const techniques = [
       'Start with just 10-20 breaths',
       'Rest after finishing'
     ],
-    expect: 'You'll feel tingling. Energy rises. Mind gets sharp. Body warms up.',
+    expect: "You'll feel tingling. Energy rises. Mind gets sharp. Body warms up.",
     safety: 'Start with only 10 breaths. Can cause dizziness. Never while driving or standing. Build slowly over weeks.'
   },
   {
@@ -183,7 +183,7 @@ const techniques = [
       'Keep breathing cool and gentle',
       'Continue 10-15 minutes'
     ],
-    expect: 'Body cools down. Urges fade. Mind becomes clear and calm.',
+    expect: "Body cools down. Urges fade. Mind becomes clear and calm.",
     safety: null
   },
   {
@@ -192,22 +192,22 @@ const techniques = [
     category: ['mindful', 'balance'],
     duration: 15,
     tier: 'beginner',
-    summary: 'Just watch your breath. Don't change anything. Simple presence practice.',
+    summary: "Just watch your breath. Don't change anything. Simple presence practice.",
     icon: Leaf,
     color: 'sage',
     pattern: [
       { phase: 'observe', duration: 3, instruction: 'Notice your natural breathing' }
     ],
     cycles: 20,
-    why: 'Anchors you to now. Quiets endless thinking. Builds awareness without effort.',
+    why: "Anchors you to now. Quiets endless thinking. Builds awareness without effort.",
     steps: [
       'Sit or lie comfortably',
-      'Don't control your breath',
+      'Don\'t control your breath',
       'Just notice it - nose or belly',
       'When mind wanders, gently return',
       'Practice 10-20 minutes'
     ],
-    expect: 'Mind wanders constantly - this is normal. Each return to breath is the practice. Peace grows.',
+    expect: "Mind wanders constantly - this is normal. Each return to breath is the practice. Peace grows.",
     safety: null
   },
   {
@@ -216,7 +216,7 @@ const techniques = [
     category: ['tired', 'recovery'],
     duration: 20,
     tier: 'beginner',
-    summary: 'Deep rest breathing. For when your body needs to recover. Let go completely.',
+    summary: "Deep rest breathing. For when your body needs to recover. Let go completely.",
     icon: RefreshCw,
     color: 'terracotta',
     pattern: [
@@ -232,7 +232,7 @@ const techniques = [
       'Make it gentle and effortless',
       'Continue 15-20 minutes'
     ],
-    expect: 'Body becomes heavy. Energy returns slowly. You might fall asleep - that's good.',
+    expect: "Body becomes heavy. Energy returns slowly. You might fall asleep - that's good.",
     safety: null
   },
   {
@@ -241,7 +241,7 @@ const techniques = [
     category: ['balance', 'focus'],
     duration: 10,
     tier: 'beginner',
-    summary: 'Balance both sides. Clears your head. Ancient practice for mental clarity.',
+    summary: "Balance both sides. Clears your head. Ancient practice for mental clarity.",
     icon: Brain,
     color: 'cream',
     pattern: [
@@ -262,16 +262,16 @@ const techniques = [
       'Switch and breathe out through left',
       'This is one cycle'
     ],
-    expect: 'Mind becomes balanced. Scattered thoughts settle. Clarity emerges.',
+    expect: "Mind becomes balanced. Scattered thoughts settle. Clarity emerges.",
     safety: null
   }
 ];
 
 const categories = [
   { id: 'anxious', label: 'Feeling Anxious', icon: Wind, description: 'Racing thoughts. Tight chest. Need calm now.' },
-  { id: 'sleep', label: 'Can't Sleep', icon: Moon, description: 'Mind won't stop. Body won't rest. Need deep sleep.' },
+  { id: 'sleep', label: "Can't Sleep", icon: Moon, description: "Mind won't stop. Body won't rest. Need deep sleep." },
   { id: 'energy', label: 'Need Energy', icon: Zap, description: 'Foggy brain. Heavy body. Need a natural boost.' },
-  { id: 'focus', label: 'Need Focus', icon: Target, description: 'Scattered mind. Can't concentrate. Need clarity.' },
+  { id: 'focus', label: 'Need Focus', icon: Target, description: "Scattered mind. Can't concentrate. Need clarity." },
   { id: 'stressed', label: 'Feeling Stressed', icon: Heart, description: 'Overwhelmed. Tense. Need to let go.' },
   { id: 'tired', label: 'Physically Tired', icon: RefreshCw, description: 'Body exhausted. Need recovery. Need rest.' },
   { id: 'emotional', label: 'Emotional Pain', icon: Heart, description: 'Heart hurts. Feeling overwhelmed. Need relief.' },
