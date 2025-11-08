@@ -741,6 +741,7 @@ function PracticeScreen({ technique, onComplete, onExit }) {
       <div className="flex-1 flex flex-col items-center justify-center p-6 pb-32">
         <div className="relative w-full max-w-sm aspect-square flex items-center justify-center mb-12">
           <div
+            key={`outer-${currentCycle}-${currentPhaseIndex}`}
             className="absolute rounded-full transition-all duration-300 ease-in-out"
             style={{
               width: '100%',
@@ -751,6 +752,7 @@ function PracticeScreen({ technique, onComplete, onExit }) {
             }}
           />
           <div
+            key={`middle-${currentCycle}-${currentPhaseIndex}`}
             className="absolute rounded-full transition-all duration-300 ease-in-out"
             style={{
               width: '90%',
@@ -761,6 +763,7 @@ function PracticeScreen({ technique, onComplete, onExit }) {
             }}
           />
           <div
+            key={`inner-${currentCycle}-${currentPhaseIndex}`}
             className="absolute rounded-full transition-all duration-300 ease-in-out flex items-center justify-center"
             style={{
               width: '80%',
@@ -810,3 +813,4 @@ function PracticeScreen({ technique, onComplete, onExit }) {
 }
 
 export default App;
+
