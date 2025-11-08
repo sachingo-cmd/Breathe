@@ -527,7 +527,6 @@ function TechniqueDetail({ technique, onStartPractice, onBack }) {
     </div>
   );
 }
-
 function PracticeScreen({ technique, onComplete, onExit }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentCycle, setCurrentCycle] = useState(0);
@@ -550,11 +549,9 @@ function PracticeScreen({ technique, onComplete, onExit }) {
           setShowCountdown(false);
           setCurrentPhaseIndex(0);
           setCurrentCycle(0);
-          setTimeout(() => {
           setTimeLeft(technique.pattern[0].duration);
           setIsPlaying(true);
-          }, 50);
-          return 5;
+          return prev;
         }
         return prev - 1;
       });
@@ -815,5 +812,3 @@ function PracticeScreen({ technique, onComplete, onExit }) {
 }
 
 export default App;
-
-
