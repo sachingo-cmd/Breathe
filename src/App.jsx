@@ -550,8 +550,10 @@ function PracticeScreen({ technique, onComplete, onExit }) {
           setShowCountdown(false);
           setCurrentPhaseIndex(0);
           setCurrentCycle(0);
+          setTimeout(() => {
           setTimeLeft(technique.pattern[0].duration);
           setIsPlaying(true);
+          }, 50);
           return 5;
         }
         return prev - 1;
@@ -813,4 +815,5 @@ function PracticeScreen({ technique, onComplete, onExit }) {
 }
 
 export default App;
+
 
